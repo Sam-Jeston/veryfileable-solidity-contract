@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "truffle test"
+    "test": "truffle test",
+    "compile": "truffle compile"
   },
   "keywords": [
     "Solidity",
@@ -18,5 +19,8 @@
   "license": "MIT",
   "dependencies": {
     "@openzeppelin/contracts": "^3.0.1"
+  },
+  "devDependencies": {
+    "truffle": "^5.1.28"
   }
 }

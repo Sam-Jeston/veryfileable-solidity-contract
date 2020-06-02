@@ -1,20 +1,58 @@
-const MetaCoin = artifacts.require("MetaCoin");
+const VeryFileableRegister = artifacts.require('VeryFileableRegister')
 
-contract('MetaCoin', (accounts) => {
-  it('should put 10000 MetaCoin in the first account', async () => {
-    const metaCoinInstance = await MetaCoin.deployed();
-    const balance = await metaCoinInstance.getBalance.call(accounts[0]);
+contract('VeryFileableRegister', (accounts) => {
+  let instance
+  const owner = accounts[0]
+  const nonOwner = accounts[1]
 
-    assert.equal(balance.valueOf(), 10000, "10000 wasn't in the first account");
-  });
-  it('should call a function that depends on a linked library', async () => {
-    const metaCoinInstance = await MetaCoin.deployed();
-    const metaCoinBalance = (await metaCoinInstance.getBalance.call(accounts[0])).toNumber();
-    const metaCoinEthBalance = (await metaCoinInstance.getBalanceInEth.call(accounts[0])).toNumber();
+  describe('constructor', () => {
+    beforeEach(async () => {
+      instance = await VeryFileableRegister.deployed()
+    })
+    
+    it('has the correct starting fee per kb', async () => {
+      const weiPerKb = (await instance.weiPerKb()).toNumber()
+      expect(weiPerKb).to.eql(1000000000000)
+    })
 
-    assert.equal(metaCoinEthBalance, 2 * metaCoinBalance, 'Library function returned unexpected function, linkage may be broken');
-  });
-  it('should send coin correctly', async () => {
+    it('has the correct base fee per kb', async () => {
+      const baseFee = (await instance.baseFeeInWei()).toNumber()
+      expect(baseFee).to.eql(1000000000000000)
+
+    })
+
+    it('has the correct owner', async () => {
+      const ownerOfContract = await instance.owner()
+      expect(ownerOfContract).to.eql(owner)
+    })
+  })
+
+  describe('registerData', () => {
+
+  })
+
+  describe('updateWeiPerKb', () => {
+    it('throws if called by not the owner', () => {
+
+    })
+
+  })
+
+  describe('updateBaseFee', () => {
+    it('throws if called by not the owner', () => {
+
+    })
+  })
+
+  describe('getRegister', () => {
+
+  })
+
+  describe('Registered event', () => {
+
+  })
+
+  /*
     const metaCoinInstance = await MetaCoin.deployed();
 
     // Setup 2 accounts.
@@ -33,8 +71,7 @@ contract('MetaCoin', (accounts) => {
     const accountOneEndingBalance = (await metaCoinInstance.getBalance.call(accountOne)).toNumber();
     const accountTwoEndingBalance = (await metaCoinInstance.getBalance.call(accountTwo)).toNumber();
 
-
     assert.equal(accountOneEndingBalance, accountOneStartingBalance - amount, "Amount wasn't correctly taken from the sender");
     assert.equal(accountTwoEndingBalance, accountTwoStartingBalance + amount, "Amount wasn't correctly sent to the receiver");
-  });
-});
+  */
+})
