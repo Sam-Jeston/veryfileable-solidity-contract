@@ -1,0 +1,22 @@
+{
+  "name": "veryfileable-solidity-contract",
+  "version": "0.1.0",
+  "description": "A solidity smart contract for storing digital signatures against a callers address",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "truffle test"
+  },
+  "keywords": [
+    "Solidity",
+    "Verification",
+    "Ethereum"
+  ],
+  "author": "Sam Jeston",
+  "license": "MIT",
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.0.1"
+  }
+}
