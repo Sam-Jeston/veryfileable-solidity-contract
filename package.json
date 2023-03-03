@@ -21,6 +21,6 @@
     "@openzeppelin/contracts": "^3.0.1"
   },
   "devDependencies": {
-    "truffle": "^5.1.28"
+    "truffle": "^5.7.9"
   }
 }
